@@ -16,6 +16,7 @@ const Header = () => {
         onClick={()=>{
           router.push("/")
         }}
+        className="cursor-pointer"
       />
       <div className="flex items-center">
         <Image

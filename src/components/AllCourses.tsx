@@ -65,7 +65,7 @@ const AllCourses = () => {
 
                 <div className="flex justify-between items-center mt-2 relative">
                   <p
-                    className="text-lg text-black"
+                    className="text-lg text-black cursor-pointer"
                     onClick={() => clickOnList(item?.id)}
                   >
                     {item?.category}
