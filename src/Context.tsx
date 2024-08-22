@@ -11,8 +11,10 @@ const ButtonContext = createContext<ButtonContextType | undefined>(undefined);
 export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Initialize with indices from local storage or default to an empty array
   const [visibleButtonIndices, setVisibleButtonIndices] = useState<string[]>(() => {
+    if (typeof window !== "undefined" && window.localStorage){
     const savedIndices = localStorage.getItem('visibleButtonIndices');
     return savedIndices ? JSON.parse(savedIndices) : [];
+    }
   });
 
   // Update state with the new index
