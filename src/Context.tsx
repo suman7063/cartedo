@@ -2,21 +2,21 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react';
 
 interface ButtonContextType {
-  visibleButtonIndices: number[];
-  setVisibleButtonIndices: (index: number) => void;
+  visibleButtonIndices: string[];
+  setVisibleButtonIndices: (index: string) => void;
 }
 
 const ButtonContext = createContext<ButtonContextType | undefined>(undefined);
 
 export const ButtonProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Initialize with indices from local storage or default to an empty array
-  const [visibleButtonIndices, setVisibleButtonIndices] = useState<number[]>(() => {
+  const [visibleButtonIndices, setVisibleButtonIndices] = useState<string[]>(() => {
     const savedIndices = localStorage.getItem('visibleButtonIndices');
     return savedIndices ? JSON.parse(savedIndices) : [];
   });
 
   // Update state with the new index
-  const updateVisibleButtonIndices = (index: number) => {
+  const updateVisibleButtonIndices = (index: string) => {
     setVisibleButtonIndices(prevIndices => {
       const newIndices = prevIndices.includes(index) 
         ? prevIndices.filter(i => i !== index) 

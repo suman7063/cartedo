@@ -24,19 +24,22 @@ const AllCourses = () => {
   const clickOnList = (id: string) => {
     router.push(`/course/${id}`);
   };
-  const handleThreeDotsClick = (index: number) => {
-    setVisibleButtonIndices(index);
+  const handleThreeDotsClick = (id: string) => {
+    setVisibleButtonIndices(id);
     setDropDown('')
   };
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log(items, "wjkwjekew");
+  if (!items) {
+    return <div>No details found</div>; // Handle case where no details are available
+  }
+
   return (
-    <div className="bg-gray-200 w-full md:w-[70%] lg:w-[80%] text-black min-h-[100vh] pb-8">
+    <div className="bg-gray-200  w-full md:w-[70%] lg:w-[80%] text-black min-h-[100vh] pb-8">
       <div className="w-full bg-white px-4 md:px-8 py-4">
-        <h1 className="text-3xl">My Courses</h1>
+        <h1 className="text-3xl">My Items</h1>
       </div>
 
       {loading ? (
@@ -52,7 +55,7 @@ const AllCourses = () => {
                 key={index}
               >
                 <Image
-                  src={item.image}
+                  src={item?.image}
                   alt="card_img"
                   width={200}
                   height={160}
@@ -63,13 +66,13 @@ const AllCourses = () => {
                 <div className="flex justify-between items-center mt-2 relative">
                   <p
                     className="text-lg text-black"
-                    onClick={() => clickOnList(item.id)}
+                    onClick={() => clickOnList(item?.id)}
                   >
-                    {item.category}
+                    {item?.category}
                   </p>
                   <p
                     className="text-xl text-black cursor-pointer "
-                    onClick={() => setDropDown(item.id)}
+                    onClick={() => setDropDown(item?.id)}
                   >
                     ...
                   </p>
@@ -77,14 +80,14 @@ const AllCourses = () => {
                     <div className="absolute top-8 right-6 p-2 bg-white shadow-2xl border z-40">
                       <button
                         className="bg-blue-200 px-2 rounded text-blue-600 w-[200px] text-left h-[32px]"
-                        onClick={() => handleThreeDotsClick(index)}
+                        onClick={() => handleThreeDotsClick(item?.id)}
                       >
                         Enroll
                       </button>
                     </div>
                   )}
                 </div>
-                {visibleButtonIndices.includes(index) && (
+                {visibleButtonIndices?.includes(item?.id) && (
                   <button className="absolute top-8 left-4 bg-red-600 px-2 rounded">
                     Enrolled
                   </button>

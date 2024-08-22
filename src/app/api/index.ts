@@ -89,7 +89,6 @@ const API = {
       });
     },
     AddCourse: (formData:any) => {
-      console.log(formData,"formData")
       return apiCaller({
         method: REST_METHODS.POST,
         url: `${API_URL}`,

@@ -48,8 +48,8 @@ const AddCourses = () => {
   };
 
   return (
-    <div className="p-4 md:p-8 bg-white w-full md:w-[30%] lg:w-[20%] text-black border border-r">
-      <button onClick={() => setOpenForm(!openForm)}>+ Add Courses</button>
+    <div className="p-4 md:p-8 bg-white w-full md:w-[30%] lg:w-[20%] h-[93vh] text-black border border-r">
+      <button onClick={() => setOpenForm(!openForm)}>+ Add Items</button>
       {openForm && (
         <ModalLayout setCloseModal={setOpenForm}>
           <div className="mt-8 w-[300px] md:w-[500px]">
